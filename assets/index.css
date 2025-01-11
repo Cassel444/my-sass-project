@@ -1,27 +1,27 @@
 @font-face {
   font-family: "Montserrat";
-  src: url("/my-sass-project/assets/Montserrat-Regular.woff2") format("woff2"), url("/my-sass-project/assets/Montserrat-Regular.woff") format("woff");
+  src: url("./Montserrat-Regular.woff2") format("woff2"), url("./Montserrat-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("/my-sass-project/assets/Montserrat-Medium.woff2") format("woff2"), url("/my-sass-project/assets/Montserrat-Medium.woff") format("woff");
+  src: url("./Montserrat-Medium.woff2") format("woff2"), url("./Montserrat-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("/my-sass-project/assets/Montserrat-SemiBold.woff2") format("woff2"), url("/my-sass-project/assets/Montserrat-SemiBold.woff") format("woff");
+  src: url("./Montserrat-SemiBold.woff2") format("woff2"), url("./Montserrat-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("/my-sass-project/assets/Montserrat-Bold.woff2") format("woff2"), url("/my-sass-project/assets/Montserrat-Bold.woff") format("woff");
+  src: url("./Montserrat-Bold.woff2") format("woff2"), url("./Montserrat-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -60,11 +60,14 @@ a, button {
 }
 
 /* Remove list styles (bullets/numbers) */
- ul, menu, summary {
+ol, ul, menu, summary {
   list-style: none;
 }
 
 /* Firefox: solve issue where nested ordered lists continue numbering from parent (https://bugzilla.mozilla.org/show_bug.cgi?id=1881517) */
+ol {
+  counter-reset: revert;
+}
 
 /* For images to not be able to exceed their container */
 img {
@@ -78,15 +81,26 @@ table {
 }
 
 /* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
-input {
+input, textarea {
   -webkit-user-select: auto;
 }
 
 /* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
 
 /* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
 
 /* preformatted text - use only for this feature */
+:where(pre) {
+  all: revert;
+  box-sizing: border-box;
+}
 
 /* reset default text opacity of input placeholder */
 ::placeholder {
@@ -95,14 +109,31 @@ input {
 
 /* fix the feature of 'hidden' attribute.
    display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
 
 /* revert for bug in Chromium browsers
    - fix for the content editable attribute will work properly.
    - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable=false])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
 
 /* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable=true]) {
+  -webkit-user-drag: element;
+}
 
 /* Revert Modal native behavior */
+:where(dialog:modal) {
+  all: revert;
+  box-sizing: border-box;
+}
 
 /* Remove details summary webkit styles */
 ::-webkit-details-marker {
@@ -176,6 +207,11 @@ summary {
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
+  }
+  .sidebar.is-open {
+    opacity: 1;
+    pointer-events: initial;
+    visibility: visible;
   }
 }
 @media only screen and (min-width: 1200px) {
@@ -264,6 +300,9 @@ summary {
     box-shadow: 0px 4px 10px 0px rgba(240, 127, 46, 0.25);
   }
 }
+.btn--primary[disabled] {
+  background-color: #b5b5be;
+}
 
 /* == Secondary == */
 .btn--secondary:active {
@@ -274,18 +313,105 @@ summary {
     color: #f15c27;
   }
 }
+.btn--secondary[disabled] {
+  color: #b5b5be;
+}
 
 /* == Default == */
+.btn--default {
+  background-color: #92929d;
+}
+.btn--default:active {
+  background-color: rgb(119.3043478261, 119.3043478261, 132.6956521739);
+}
+@media (hover: hover) {
+  .btn--default:hover, .btn--default:focus {
+    background-color: rgb(172.8550724638, 172.8550724638, 181.1449275362);
+  }
+}
+.btn--default[disabled] {
+  background-color: #b5b5be;
+}
 
 /* == Danger == */
+.btn--danger {
+  background-color: #fc5a5a;
+}
+.btn--danger:active {
+  background-color: rgb(251.0892857143, 39.9107142857, 39.9107142857);
+}
+@media (hover: hover) {
+  .btn--danger:hover, .btn--danger:focus {
+    background-color: rgb(252.9107142857, 140.0892857143, 140.0892857143);
+  }
+}
+.btn--danger[disabled] {
+  background-color: #b5b5be;
+}
 
 /* == Warning == */
+.btn--warning {
+  background-color: #a461d8;
+}
+.btn--warning:active {
+  background-color: rgb(140.4416243655, 56.0964467005, 205.9035532995);
+}
+@media (hover: hover) {
+  .btn--warning:hover, .btn--warning:focus {
+    background-color: rgb(187.5583756345, 137.9035532995, 226.0964467005);
+  }
+}
+.btn--warning[disabled] {
+  background-color: #b5b5be;
+}
 
 /* == Success == */
+.btn--success {
+  background-color: #82c43c;
+}
+.btn--success:active {
+  background-color: rgb(104.1141732283, 157.3818897638, 47.6181102362);
+}
+@media (hover: hover) {
+  .btn--success:hover, .btn--success:focus {
+    background-color: rgb(155.0984251969, 207.8464566929, 99.1535433071);
+  }
+}
+.btn--success[disabled] {
+  background-color: #b5b5be;
+}
 
 /* == Info == */
+.btn--info {
+  background-color: #4e75ff;
+}
+.btn--info:active {
+  background-color: rgb(27, 77.2372881356, 255);
+}
+@media (hover: hover) {
+  .btn--info:hover, .btn--info:focus {
+    background-color: rgb(129, 156.7627118644, 255);
+  }
+}
+.btn--info[disabled] {
+  background-color: #b5b5be;
+}
 
 /* ==Frame == */
+.btn--frame {
+  border-color: #f07f2e;
+}
+.btn--frame:active {
+  border-color: #d14a00;
+}
+@media (hover: hover) {
+  .btn--frame:hover, .btn--frame:focus {
+    border-color: #f15c27;
+  }
+}
+.btn--frame[disabled] {
+  background-color: rgba(181, 181, 190, 0.5);
+}
 
 .welcome {
   grid-area: welcome;
@@ -320,6 +446,10 @@ summary {
     transition-property: transform;
     max-width: 248px;
     transform: translateX(-100%);
+  }
+  .sidebar.is-open .menu {
+    transform: translateX(0);
+    transition-delay: 300ms;
   }
 }
 
