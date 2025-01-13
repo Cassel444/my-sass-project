@@ -140,6 +140,13 @@ meter {
   display: none;
 }
 
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.66;
+  letter-spacing: 0.02em;
+}
+
 body {
   font-size: 16px;
   font-weight: 400;
@@ -147,7 +154,7 @@ body {
   letter-spacing: 0.03em;
 }
 
-.menu-link {
+.menu-btn, .menu-link {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.43;
@@ -260,7 +267,7 @@ summary {
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 40px;
+  gap: 4px;
   min-width: 32px;
   min-height: 32px;
   padding: 8px 12px;
@@ -492,4 +499,62 @@ summary {
 
 .menu-notification {
   margin-left: auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  color: #f07f2e;
+}
+@media only screen and (min-width: 1200px) {
+  .logo {
+    padding: 16px 20px;
+  }
+}
+
+.menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+  color: #fafafb;
+}
+@media only screen and (min-width: 1200px) {
+  .menu-btn {
+    display: none;
+  }
+}
+.menu-btn-icon {
+  fill: currentColor;
+}
+.sidebar .menu-btn {
+  transition: 600ms ease;
+  transition-property: opacity, transform;
+  transition-delay: 800ms, 600ms;
+  position: absolute;
+  top: 16px;
+  right: -36px;
+  opacity: 0;
+  transform: rotate(180deg);
+}
+.sidebar.is-open .menu-btn {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.notification {
+  flex-shrink: 0;
+  display: block;
+  min-width: 28px;
+  height: 20px;
+  padding: 0 10px;
+  color: #fafafb;
+  border-radius: 12px;
+  background-color: #fc5a5a;
+  opacity: 0;
+}
+.notification.is-notify {
+  opacity: 1;
 }
