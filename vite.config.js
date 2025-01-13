@@ -61,7 +61,7 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import purgecss from "@fullhuman/postcss-purgecss";
 
 export default defineConfig({
-  base: '/my-sass-project/',
+  base: './',
   plugins: [
     ViteImageOptimizer({
       png: {
@@ -102,7 +102,7 @@ export default defineConfig({
       ),
       // output unminified CSS file
       output: {
-        assetFileNames: "assets/[name].[hash].[ext]",
+        assetFileNames: "assets/[name].[ext]",
       },
     },
   },
