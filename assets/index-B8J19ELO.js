@@ -19,16 +19,12 @@
   }).observe(document, { childList: true, subtree: true });
   function getFetchOpts(link) {
     const fetchOpts = {};
-    if (link.integrity)
-      fetchOpts.integrity = link.integrity;
-    if (link.referrerPolicy)
-      fetchOpts.referrerPolicy = link.referrerPolicy;
+    if (link.integrity) fetchOpts.integrity = link.integrity;
+    if (link.referrerPolicy) fetchOpts.referrerPolicy = link.referrerPolicy;
     if (link.crossOrigin === "use-credentials")
       fetchOpts.credentials = "include";
-    else if (link.crossOrigin === "anonymous")
-      fetchOpts.credentials = "omit";
-    else
-      fetchOpts.credentials = "same-origin";
+    else if (link.crossOrigin === "anonymous") fetchOpts.credentials = "omit";
+    else fetchOpts.credentials = "same-origin";
     return fetchOpts;
   }
   function processPreload(link) {
@@ -39,7 +35,6 @@
     fetch(link.href, fetchOpts);
   }
 })();
-const main = "";
 function _toConsumableArray(arr) {
   if (Array.isArray(arr)) {
     for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
@@ -81,10 +76,8 @@ var preventDefault = function preventDefault2(rawEvent) {
   if (allowTouchMove(e.target)) {
     return true;
   }
-  if (e.touches.length > 1)
-    return true;
-  if (e.preventDefault)
-    e.preventDefault();
+  if (e.touches.length > 1) return true;
+  if (e.preventDefault) e.preventDefault();
   return false;
 };
 var setOverflowHidden = function setOverflowHidden2(options) {
@@ -262,8 +255,7 @@ const toggleMenu = () => {
 refsMenu.openMenuBtn.addEventListener("click", toggleMenu);
 refsMenu.closeMenuBtn.addEventListener("click", toggleMenu);
 window.matchMedia("(min-width: 1200px)").addEventListener("change", (event) => {
-  if (!event.matches)
-    return;
+  if (!event.matches) return;
   refsMenu.overlayMenu.classList.remove("is-open");
   refsMenu.openMenuBtn.setAttribute("aria-expanded", false);
   enableBodyScroll(document.body);
