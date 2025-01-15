@@ -58,15 +58,21 @@ import { defineConfig } from "vite";
 import glob from "fast-glob";
 import { fileURLToPath } from "url";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
-import viteSvgSprite from "vite-plugin-svg-sprite";
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+
+// import viteSvgSprite from "vite-plugin-svg-sprite";
 import purgecss from "@fullhuman/postcss-purgecss";
 
 export default defineConfig({
   base: './',
   plugins: [
-    viteSvgSprite({
-      include: './src/img/icons.svg',
-      output: './dist/assets/icons.svg',  // шлях до всіх SVG-файлів в папці
+    viteStaticCopy({
+      targets: [
+        {
+          src: './src/img/icons.svg',
+          dest: 'assets', // Куди копіювати у папку dist
+        },
+      ],
     }),
     ViteImageOptimizer({
       png: {
