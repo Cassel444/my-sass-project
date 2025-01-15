@@ -11,7 +11,8 @@
       'welcome'
       'co-workers'
       'tasks'
-      'reports';
+      'reports'
+      'companies';
   
     @include mx.mq('md') {
       gap: 36px;
@@ -21,7 +22,8 @@
       grid-template-areas:
         'welcome welcome'
         'co-workers co-workers'
-        'tasks reports';
+        'tasks reports'
+        'companies companies';
     }
   
     @include mx.mq('lg') {
@@ -33,6 +35,7 @@
       grid-template-areas:
         'welcome welcome'
         'co-workers tasks'
-        'co-workers reports';
+        'co-workers reports'
+        'companies companies';
     }
   }

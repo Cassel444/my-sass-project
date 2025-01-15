@@ -1,0 +1,28 @@
+@use '../../utils/placeholders';
+@use '../../utils/variables' as var;
+@use '../../utils/functions' as fn;
+@use '../../utils/mixins' as mx;
+
+.companies {
+    grid-area: companies;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    row-gap: 16px;
+}
+.companies-title {
+    &-accent {
+        @extend %section-title;
+    
+        display: block;
+        margin-bottom: 8px;
+    
+        color: fn.get-color('light-primary');
+    
+        @include mx.mq('lg') {
+          margin-bottom: 16px;
+        }
+      }
+}
