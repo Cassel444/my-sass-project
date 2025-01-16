@@ -8,7 +8,7 @@
   width: 100%;
   height: 100%;
 
-  background-color: fn.get-color('dark-primary');
+  background-color: fn.get-color('dark-secondary');
 
   @include mx.mq('lg', 'max') {
     @include mx.ease('fast', transform);
